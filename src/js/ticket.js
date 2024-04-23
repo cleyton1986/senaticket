@@ -4,9 +4,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   const ingressoCode = localStorage.getItem("codIngresso");
   const emailUser = localStorage.getItem("email");
 
-  // console.log(ingressoCode);
-  // console.log(emailUser);
-
   if (!ingressoCode) {
     console.error("Código do ingresso não encontrado.");
     return; // Encerra se não houver código armazenado
@@ -16,17 +13,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.error("email não encontrado.");
     return; // Encerra se não houver código armazenado
   }
-  // console.log("passou validações");
 
   try {
     const response = await axios.post(BASE_URL + "ingressUser", {
       email: emailUser,
       codigo: ingressoCode,
     });
-    // console.log("passou request");
 
     const data = response.data;
-    // console.log(data);
 
     // Atualiza os dados na página
     document.getElementById("name").getElementsByTagName("h1")[0].textContent =

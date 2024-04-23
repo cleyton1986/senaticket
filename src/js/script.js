@@ -14,13 +14,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   localStorage.removeItem("email");
   localStorage.removeItem("codIngresso");
-  // console.log("apagou");
 
   try {
     // Faz a chamada HTTP usando Axios
     const response = await axios.get(BASE_URL + "games");
-
-    // console.log(response);
     // Limpa o select
     select.innerHTML = "";
 
@@ -76,15 +73,12 @@ async function submitForm(event) {
   setTimeout(async () => {
     try {
       const jsonData = formDataToJson(formData);
-      // console.log(jsonData);
+
       const response = await axios.post(BASE_URL + "register", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-
-      // console.log("response ##########################################");
-      // console.log(response);
 
       if (response.data.codIngressoUpper) {
         localStorage.setItem("codIngresso", response.data.codIngressoUpper);
@@ -128,12 +122,7 @@ async function submitFormIngress(event) {
   setTimeout(async () => {
     try {
       const jsonData = formDataToJson(formData);
-      // console.log(jsonData);
       const response = await axios.post(BASE_URL + "ingressUser", jsonData);
-
-      // console.log("chegando no response");
-
-      // console.log(response);
 
       if (response.data.codIngresso) {
         localStorage.setItem("email", response.data.email);
